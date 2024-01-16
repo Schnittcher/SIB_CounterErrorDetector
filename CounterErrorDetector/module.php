@@ -11,9 +11,9 @@ class CounterErrorDetector extends IPSModule
         $this->RegisterPropertyInteger("CounterSerialNumber", 0);
         $this->RegisterPropertyInteger("CounterState", 0);
 
-        $this->RegisterVariableInteger("Counter Serial Number", "CounterSerialNumber", "", 1);
-        $this->RegisterVariableBoolean("Counter State", "CounterState", "", 2);
-        $this->RegisterVariableBoolean("Counter Error", "CounterError", "~Alert", 3);
+        $this->RegisterVariableInteger("CounterSerialNumber", "Counter Serial Number", "", 1);
+        $this->RegisterVariableBoolean("CounterState", "Counter State", "", 2);
+        $this->RegisterVariableBoolean("CounterError", "Counter Error", "~Alert", 3);
     }
     // Überschreibt die intere IPS_ApplyChanges($id) Funktion
     public function ApplyChanges()
