@@ -35,7 +35,7 @@
       }
 
       private function CheckSerialNumber(){
-        $CounterSerialNumberSaved = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
+        $CounterSerialNumberSaved = GetValue($this->GetIDForIdent("CounterSerialNumber"));
         $CounterSerialNumberNow = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber")));
 
         if ($CounterSerialNumberSaved != $CounterSerialNumberNow){
