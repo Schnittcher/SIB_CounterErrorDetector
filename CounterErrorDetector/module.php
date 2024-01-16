@@ -18,12 +18,15 @@
           // Diese Zeile nicht löschen
           parent::ApplyChanges();
 
-          $CounterSerialID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber"));
-          $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
+          if (isset($this->ReadPropertyInteger("CounterSerialNumber"))){
+            $CounterSerialID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber"));
+            $this->RegisterMessage($CounterSerialID, 10603 /* VM_UPDATE */);
+          }
 
-          $this->RegisterMessage($CounterSerialID, 10603 /* VM_UPDATE */);
-          $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */);
-          
+          if (isset($this->ReadPropertyInteger("CounterState"))){
+            $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
+            $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */);
+          }          
       }
 
       public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
