@@ -31,6 +31,8 @@ class CounterErrorDetector extends IPSModule
             $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
             $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */ );
         }
+
+        $this->CheckCounter();
     }
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
