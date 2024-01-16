@@ -1,0 +1,13 @@
+{
+  "id": "{A932716E-AD36-4E87-A608-278DEEE778D3}",
+  "author": "Schrader IT-Beratung",
+  "name": "CounterErrorDetector",
+  "url": "https://schrader-it.net",
+  "compatibility": {
+         "version": "6.0",
+         "date": 0
+     },
+  "version": "0.1",
+  "build": 0,
+  "date": 0
+}

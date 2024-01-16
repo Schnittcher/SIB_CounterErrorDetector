@@ -1,0 +1,10 @@
+{
+    "translations": {
+        "de": {
+            "Settings": "Einstellungen",
+            "Counter Serial Number": "Zähler Seriennummer",
+            "Counter Status": "Zähler Status",
+            "Counter Error": "Zähler Fehler"
+        }
+    }
+}

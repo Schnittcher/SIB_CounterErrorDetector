@@ -1,0 +1,15 @@
+{
+  "id": "{E9B8EA57-7219-4585-9C77-D1551E8737E0}",
+  "name": "CounterErrorDetector",
+  "type": 3,
+  "vendor": "",
+  "aliases":
+  [
+    "CounterErrorDetector",
+    "Zähler Fehler Erkennung"
+      ],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "SIT"
+}
