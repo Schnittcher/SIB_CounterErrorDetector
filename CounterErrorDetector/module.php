@@ -24,20 +24,5 @@
 
       }
 
-      public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-            $this->CheckSerialNumber();
-            $NewCounterSerialNumber = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
-            SetValue($this->GetIDForIdent("CounterSerialNumber"), $NewCounterSerialNumber);
-      }
 
-      private function CheckSerialNumber(){
-        $CounterSerialNumberSaved = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
-        $CounterSerialNumberNow = GetValue(ReadPropertyInteger("CounterSerialNumber"));
-
-        if ($CounterSerialNumberSaved != $CounterSerialNumberNow){
-          SetValue($this->GetIDForIdent("CounterError"), TRUE);
-        }else{
-          SetValue($this->GetIDForIdent("CounterError"), FALSE);
-        }
-      }
   }
