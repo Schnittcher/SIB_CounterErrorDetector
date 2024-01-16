@@ -20,6 +20,7 @@
 
           if ($this->ReadPropertyInteger("CounterSerialNumber") != 0){
             $CounterSerialID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber"));
+            SetValue($this->GetIDForIdent("CounterSerialNumber"), GetValue($CounterSerialID));
             $this->RegisterMessage($CounterSerialID, 10603 /* VM_UPDATE */);
           }
 
