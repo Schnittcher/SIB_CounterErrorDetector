@@ -40,16 +40,28 @@ class CounterErrorDetector extends IPSModule
 
     private function CheckCounter()
     {
+        $Error = FALSE;
         // check Serial Number
         $CounterSerialNumberSaved = GetValue($this->GetIDForIdent("CounterSerialNumber"));
         $CounterSerialNumberNow   = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber")));
 
         if ($CounterSerialNumberSaved != $CounterSerialNumberNow) {
-            SetValue($this->GetIDForIdent("CounterError"), TRUE);
-        } else {
-            SetValue($this->GetIDForIdent("CounterError"), FALSE);
+            $Error = TRUE;
         }
 
+        // check State
+        $CounterStateID = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState")));
 
+        if ($CounterStateID ) {
+            $Error = TRUE;
+        }
+
+        // Set Error
+        if ($Error){
+          SetValue($this->GetIDForIdent("CounterError"), TRUE);
+        }
+        else {
+            SetValue($this->GetIDForIdent("CounterError"), FALSE);
+        }
     }
 }
