@@ -31,10 +31,11 @@
       }
 
       public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-            $this->CheckSerialNumber();
+            $this->CheckCounter();
       }
 
-      private function CheckSerialNumber(){
+      private function CheckCounter(){
+        // check Serial Number
         $CounterSerialNumberSaved = GetValue($this->GetIDForIdent("CounterSerialNumber"));
         $CounterSerialNumberNow = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber")));
 
