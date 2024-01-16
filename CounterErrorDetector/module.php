@@ -53,9 +53,9 @@ class CounterErrorDetector extends IPSModule
 
         // check State
         $CounterState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState")));
-        $this->SendDebug("CounterErrorDetector", "CounterState " . $CounterState, 0);
+        $this->SendDebug("CounterErrorDetector", "CounterState " . (int)$CounterState, 0);
 
-        if ($CounterState ) {
+        if (!$CounterState ) {
             $Error = TRUE;
         }
 
