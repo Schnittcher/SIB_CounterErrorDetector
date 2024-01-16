@@ -29,6 +29,7 @@ class CounterErrorDetector extends IPSModule
 
         if ($this->ReadPropertyInteger("CounterState") != 0) {
             $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
+            SetValue($this->GetIDForIdent("CounterState"), GetValue($CounterStateID));
             $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */ );
         }
 
