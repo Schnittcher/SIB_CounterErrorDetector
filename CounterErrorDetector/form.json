@@ -1,8 +1,20 @@
 {
-    "elements":
-    [
-        { "type": "Label", "label": "Settings" },
-        { "type": "SelectInstance", "name": "CounterSerialNumber", "caption": "Counter Serial Number", "validModules": ["{AD992707-B7DC-4255-96DE-B70057CEC989}"] },
-        { "type": "SelectInstance", "name": "CounterState", "caption": "Counter State", "validModules": "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}" }
-    ]
-}
+   "elements":[
+      {
+         "type":"Label",
+         "label":"Settings"
+      },
+      {
+         "type":"SelectInstance",
+         "name":"CounterSerialNumber",
+         "caption":"Counter Serial Number",
+         "validModules":"{AD992707-B7DC-4255-96DE-B70057CEC989}"
+      },
+      {
+         "type":"SelectInstance",
+         "name":"CounterState",
+         "caption":"Counter State",
+         "validModules": [
+           "{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"
+         ]
+      }
