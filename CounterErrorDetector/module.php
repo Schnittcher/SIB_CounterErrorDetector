@@ -11,7 +11,7 @@
 
           $this->RegisterVariableInteger("CounterSerialNumber", "CounterSerialNumber", "", 1);
           $this->RegisterVariableBoolean("CounterState", "CounterState", "", 2);
-          $this->RegisterVariableBoolean("CounterError", "CounterError", "", 3);
+          $this->RegisterVariableBoolean("CounterError", "CounterError", "~Alert", 3);
       }
       // Überschreibt die intere IPS_ApplyChanges($id) Funktion
       public function ApplyChanges() {
