@@ -7,7 +7,7 @@
           parent::Create();
 
           $this->RegisterPropertyInteger("CounterSerialNumber", 0);
-          $this->RegisterPropertyBoolean("CounterStatus", FALSE);
+          $this->RegisterPropertyInteger("CounterStatus", 0);
 
           $this->RegisterVariableInteger("CounterSerialNumber", "CounterSerialNumber", "", 1);
           $this->RegisterVariableBoolean("CounterStatus", "CounterStatus", "", 2);
@@ -24,5 +24,20 @@
 
       }
 
+      public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
+            $this->CheckSerialNumber();
+            $NewCounterSerialNumber = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
+            SetValue($this->GetIDForIdent("CounterSerialNumber"), $NewCounterSerialNumber);
+      }
 
+      private function CheckSerialNumber(){
+        $CounterSerialNumberSaved = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
+        $CounterSerialNumberNow = GetValue(ReadPropertyInteger("CounterSerialNumber"));
+
+        if ($CounterSerialNumberSaved != $CounterSerialNumberNow){
+          SetValue($this->GetIDForIdent("CounterError"), TRUE);
+        }else{
+          SetValue($this->GetIDForIdent("CounterError"), FALSE);
+        }
+      }
   }
