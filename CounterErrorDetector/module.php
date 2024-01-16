@@ -7,10 +7,10 @@
           parent::Create();
 
           $this->RegisterPropertyInteger("CounterSerialNumber", 0);
-          $this->RegisterPropertyInteger("CounterStatus", 0);
+          $this->RegisterPropertyInteger("CounterState", 0);
 
           $this->RegisterVariableInteger("CounterSerialNumber", "CounterSerialNumber", "", 1);
-          $this->RegisterVariableBoolean("CounterStatus", "CounterStatus", "", 2);
+          $this->RegisterVariableBoolean("CounterState", "CounterState", "", 2);
           $this->RegisterVariableBoolean("CounterError", "CounterError", "", 3);
       }
       // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -18,10 +18,12 @@
           // Diese Zeile nicht löschen
           parent::ApplyChanges();
 
-          $this->RegisterMessage($this->ReadPropertyInteger("CounterSerialNumber"), 10603 /* VM_UPDATE */);
-          $this->RegisterMessage($this->ReadPropertyBoolean("CounterStatus"), 10603 /* VM_UPDATE */);
+          $CounterSerialID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber"));
+          $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
 
-
+          $this->RegisterMessage($CounterSerialID, 10603 /* VM_UPDATE */);
+          $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */);
+          
       }
 
       public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
