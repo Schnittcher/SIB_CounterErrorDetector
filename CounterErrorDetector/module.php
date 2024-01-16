@@ -6,7 +6,7 @@
           // Diese Zeile nicht löschen.
           parent::Create();
 
-          $this->RegisterPropertyInteger, 0);
+          $this->RegisterPropertySerialNumber("CounterSerialNumber", 0);
           $this->RegisterPropertyBoolean("CounterStatus", 0);
 
           $this->RegisterVariableInteger("CounterSerialNumber", "CounterSerialNumber", "", 1);
@@ -37,7 +37,7 @@
         if ($CounterSerialNumberSaved != $CounterSerialNumberNow){
           SetValue($this->GetIDForIdent("CounterError"), TRUE);
         }else{
-          SetValue($this->GetIDForIdent("CounterError"), FALSE);  
+          SetValue($this->GetIDForIdent("CounterError"), FALSE);
         }
       }
   }
