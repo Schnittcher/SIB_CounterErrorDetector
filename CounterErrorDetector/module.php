@@ -21,13 +21,13 @@
           $this->RegisterMessage($this->ReadPropertyInteger("CounterSerialNumber"), 10603 /* VM_UPDATE */);
           $this->RegisterMessage($this->ReadPropertyBoolean("CounterStatus"), 10603 /* VM_UPDATE */);
 
-          $NewCounterSerialNumber = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
 
-          SetValue($this->GetIDForIdent("CounterSerialNumber"), $NewCounterSerialNumber);
       }
 
       public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
             $this->CheckSerialNumber();
+            $NewCounterSerialNumber = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
+            SetValue($this->GetIDForIdent("CounterSerialNumber"), $NewCounterSerialNumber);
       }
 
       private function CheckSerialNumber(){
