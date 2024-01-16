@@ -7,7 +7,7 @@
           parent::Create();
 
           $this->RegisterPropertyInteger("CounterSerialNumber", 0);
-          $this->RegisterPropertyBoolean("CounterStatus", 0);
+          $this->RegisterPropertyBoolean("CounterStatus", FALSE);
 
           $this->RegisterVariableInteger("CounterSerialNumber", "CounterSerialNumber", "", 1);
           $this->RegisterVariableBoolean("CounterStatus", "CounterStatus", "", 2);
