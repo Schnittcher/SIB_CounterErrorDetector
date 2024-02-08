@@ -5,7 +5,7 @@
          "label":"Settings"
       },
       {
-         "type":"SelectInstance",
+         "type":"SelectVariable",
          "name":"CounterSerialNumber",
          "caption":"Counter Serial Number",
          "validModules":[
@@ -13,7 +13,7 @@
          ]
       },
       {
-         "type":"SelectInstance",
+         "type":"SelectVariable",
          "name":"CounterState",
          "caption":"Counter State",
          "validModules": [

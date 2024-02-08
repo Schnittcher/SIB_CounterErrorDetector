@@ -22,23 +22,25 @@ class CounterErrorDetector extends IPSModule
         parent::ApplyChanges();
 
         if ($this->ReadPropertyInteger("CounterSerialNumber") != 0) {
-            $CounterSerialID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber"));
-            SetValue($this->GetIDForIdent("CounterSerialNumber"), GetValue($CounterSerialID));
-            $this->RegisterMessage($CounterSerialID, 10603 /* VM_UPDATE */ );
+            $CounterSerialID = $this->ReadPropertyInteger("CounterSerialNumber");
+            $this->SetValue('CounterSerialNumber',GetValue($CounterSerialID));
+            $this->RegisterMessage($CounterSerialID, VM_UPDATE);
         }
 
         if ($this->ReadPropertyInteger("CounterState") != 0) {
-            $CounterStateID = IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState"));
-            SetValue($this->GetIDForIdent("CounterState"), GetValue($CounterStateID));
-            $this->RegisterMessage($CounterStateID, 10603 /* VM_UPDATE */ );
+            $CounterStateID = $this->ReadPropertyInteger("CounterState");
+            $this->SetValue('CounterState', GetValue($CounterStateID));
+            $this->RegisterMessage($CounterStateID, VM_UPDATE);
         }
-
         $this->CheckCounter();
     }
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
     {
-        $this->CheckCounter();
+        //Nur ausführen, wenn sich die Variable verändert hat.
+        if ($Data[1]) {
+            $this->CheckCounter();
+        }
     }
 
     private function CheckCounter()
@@ -47,32 +49,32 @@ class CounterErrorDetector extends IPSModule
 
         // check Serial Number
         if ($this->ReadPropertyInteger("CounterSerialNumber") != 0){
-          $CounterSerialNumberSaved = GetValue($this->GetIDForIdent("CounterSerialNumber"));
-          $CounterSerialNumberNow   = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterSerialNumber")));
+          $CounterSerialNumberSaved = $this->GetValue('CounterSerialNumber');
+          $CounterSerialNumberNow   = GetValue($this->ReadPropertyInteger("CounterSerialNumber"));
 
           if ($CounterSerialNumberSaved != $CounterSerialNumberNow) {
-              $Error = TRUE;
+              $Error = true;
           }
         }
 
         // check State
         if ($this->ReadPropertyInteger("CounterState") != 0){
-          $CounterState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("CounterState")));
-          SetValue($this->GetIDForIdent("CounterState"), $CounterState);
+          $CounterState = GetValue($this->ReadPropertyInteger("CounterState"));
+          $this->SetValue('CounterState', $CounterState);
 
           $this->SendDebug("CounterErrorDetector", "CounterState " . (int)$CounterState, 0);
 
           if (!$CounterState ) {
-              $Error = TRUE;
+              $Error = true;
           }
         }
 
         // Set Error
         if ($Error){
-          SetValue($this->GetIDForIdent("CounterError"), TRUE);
+          $this->SetValue('CounterError', true);
         }
         else {
-            SetValue($this->GetIDForIdent("CounterError"), FALSE);
+            $this->SetValue('CounterError', false);
         }
     }
 }
